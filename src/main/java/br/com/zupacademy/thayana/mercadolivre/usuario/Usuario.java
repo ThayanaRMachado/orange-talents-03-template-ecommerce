@@ -24,7 +24,6 @@ public class Usuario {
 
 	@PastOrPresent
 	@CreationTimestamp
-	@Column(name = "instante_cadastro", unique = true, nullable = false)
 	private LocalDateTime instanteCadastro = LocalDateTime.now();
 
 	@NotBlank

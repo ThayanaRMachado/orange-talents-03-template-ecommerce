@@ -19,7 +19,7 @@ public class UsuarioController {
 
 	@PostMapping
 	@Transactional
-	public String cadastrar(@RequestBody @Valid UsuarioRequest request) {
+	public String cadastrar(@RequestBody @Valid UsuarioRequest request) {		
 		Usuario usuario = request.toModel();
 		manager.persist(usuario);
 		return usuario.toString();

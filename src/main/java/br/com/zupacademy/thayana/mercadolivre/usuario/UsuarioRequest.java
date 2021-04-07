@@ -4,10 +4,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zupacademy.thayana.mercadolivre.compartilhado.CampoUnico;
+
+
 public class UsuarioRequest {
 
 	@NotBlank
 	@Email
+	@CampoUnico(classe = Usuario.class, nomeAtributo = "login")
 	private String login;
 
 	@NotBlank
