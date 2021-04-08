@@ -2,8 +2,10 @@ package br.com.zupacademy.thayana.mercadolivre.categoria;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.CampoUnico;
+import br.com.zupacademy.thayana.mercadolivre.compartilhado.ExistsId;
 
 public class NovaCategoriaRequest {
 
@@ -11,15 +13,16 @@ public class NovaCategoriaRequest {
 	@CampoUnico(classe = Categoria.class, nomeAtributo = "nome")
 	private String nome;
 
+	@Positive
+	@ExistsId(classe = Categoria.class, nomeAtributo = "id")
 	private Long idCategoriaMae;
 
 	public NovaCategoriaRequest() {
 
 	}
 
-	public NovaCategoriaRequest(String nome) {
-		super();
-		this.nome = nome;
+	public void setIdCategoriaMae(Long idCategoriaMae) {
+		this.idCategoriaMae = idCategoriaMae;
 	}
 
 	public void setNome(String nome) {

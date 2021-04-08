@@ -41,10 +41,28 @@ public class Usuario {
 		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", instanteCadastro=" + instanteCadastro + ", login=" + login + ", senha=" + senha
-				+ "]";
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getInstanteCadastro() {
+		return instanteCadastro;
+	}
+
+	public void setInstanteCadastro(LocalDateTime instanteCadastro) {
+		this.instanteCadastro = instanteCadastro;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 }
