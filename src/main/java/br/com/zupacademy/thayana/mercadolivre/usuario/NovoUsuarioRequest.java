@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.CampoUnico;
 
 
-public class UsuarioRequest {
+public class NovoUsuarioRequest {
 
 	@NotBlank
 	@Email
@@ -18,7 +18,7 @@ public class UsuarioRequest {
 	@Size(min = 6)
 	private String senha;
 
-	public UsuarioRequest(@NotBlank @Email String login, @NotBlank @Size(min = 6) String senha) {
+	public NovoUsuarioRequest(@NotBlank @Email String login, @NotBlank @Size(min = 6) String senha) {
 		super();
 		this.login = login.toLowerCase();
 		this.senha = senha;

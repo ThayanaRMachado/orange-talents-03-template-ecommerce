@@ -31,7 +31,6 @@ public class CampoUnicoValidator implements ConstraintValidator<CampoUnico, Obje
 		Query query = entityManager.createQuery("select 1 from "+classe.getName()+" where "+palavra+"=:value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
-		Assert.state(list.size() <=1, "Foi encontrado mais de um "+classe+" com o atributo "+palavra+" = "+value);
 		
 		return list.isEmpty();
 	}
