@@ -17,6 +17,7 @@ public class NovoProdutoResponse {
 	private String descricao;
 	private Long idCategoria;
 	private String nomeCategoria;
+	private String loginUsuario;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataCadastro = LocalDateTime.now();
@@ -34,6 +35,7 @@ public class NovoProdutoResponse {
 		this.descricao = produto.getDescricao();
 		this.idCategoria = produto.getCategoria().getId();
 		this.nomeCategoria = produto.getCategoria().getNome();
+		this.loginUsuario = produto.getDono().getLogin();
 		this.dataCadastro = produto.getDataCadastro();
 	}
 
@@ -71,6 +73,10 @@ public class NovoProdutoResponse {
 	
 	public String getNomeCategoria() {
 		return nomeCategoria;
+	}
+	
+	public String getLoginUsuario() {
+		return loginUsuario;
 	}
 	 
 }

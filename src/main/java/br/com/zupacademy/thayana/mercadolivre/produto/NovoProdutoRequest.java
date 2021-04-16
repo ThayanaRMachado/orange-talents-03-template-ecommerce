@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 import br.com.zupacademy.thayana.mercadolivre.categoria.Categoria;
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.CampoUnico;
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.ExistsId;
+import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 public class NovoProdutoRequest {
 
@@ -46,7 +47,8 @@ public class NovoProdutoRequest {
 
 	public NovoProdutoRequest(@NotBlank String nome, @NotNull @Positive BigDecimal preco,
 			@NotNull @Positive int quantidade, @NotBlank @Size(max = 1000) String descricao,
-			@Size(min = 3) @Valid Set<NovaCaracteristicaRequest> caracteristicas, @NotNull Long idCategoria) {
+			@Size(min = 3) @Valid Set<NovaCaracteristicaRequest> caracteristicas,
+			@NotNull Long idCategoria) {
 		this.nome = nome;
 		this.preco = preco;
 		this.quantidade = quantidade;
@@ -79,10 +81,10 @@ public class NovoProdutoRequest {
 		return caracteristicas;
 	}
 
-	public Produto toModel(EntityManager manager) {
+	public Produto toModel(EntityManager manager, Usuario dono) {
 		Categoria categoria = manager.find(Categoria.class, idCategoria);
 
-		return new Produto(nome, preco, quantidade, caracteristicas, descricao, categoria);
+		return new Produto(nome, preco, quantidade, caracteristicas, descricao, categoria, dono);
 	}
 
 	public Set<String> temCaracteristicasIguais() {

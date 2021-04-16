@@ -8,5 +8,15 @@
     "name": "forum.jwt.secret",
     "type": "java.lang.String",
     "description": "A description for 'forum.jwt.secret'"
+  },
+  {
+    "name": "mercadolivre.raiz",
+    "type": "java.lang.String",
+    "description": "A description for 'mercadolivre.raiz'"
+  },
+  {
+    "name": "mercadolivre.imagens",
+    "type": "java.lang.String",
+    "description": "A description for 'mercadolivre.imagens'"
   }
 ]}

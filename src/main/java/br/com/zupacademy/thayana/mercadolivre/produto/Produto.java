@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -22,6 +23,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import br.com.zupacademy.thayana.mercadolivre.categoria.Categoria;
+import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 @Entity
 public class Produto {
@@ -52,7 +54,15 @@ public class Produto {
 	@NotNull
 	@ManyToOne
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<Imagem> imagens = new HashSet<>();
 
+	@ManyToOne
+	@NotNull
+	@Valid
+	private Usuario dono;
+	
 	@CreationTimestamp
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 
@@ -61,8 +71,8 @@ public class Produto {
 	}
 
 	public Produto(String nome, BigDecimal preco, int quantidade,
-			Collection<NovaCaracteristicaRequest> caracteristicas/* Set<Caracteristica> caracteristicas */,
-			String descricao, Categoria categoria) {
+			Collection<NovaCaracteristicaRequest> caracteristicas,
+			String descricao, Categoria categoria, Usuario dono) {
 		this.nome = nome;
 		this.preco = preco;
 		this.quantidade = quantidade;
@@ -70,6 +80,7 @@ public class Produto {
 				.collect(Collectors.toSet()));
 		this.descricao = descricao;
 		this.categoria = categoria;
+		this.dono = dono;
 	}
 
 	public Long getId() {
@@ -99,6 +110,10 @@ public class Produto {
 	public Categoria getCategoria() {
 		return categoria;
 	}
+	
+	public Usuario getDono() {
+		return dono;
+	}
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
@@ -127,6 +142,12 @@ public class Produto {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	public void associaImagens(Set<String> links) {
+		Set<Imagem> imagens = links.stream().map(link -> new Imagem(this, link)).collect(Collectors.toSet());
+
+		this.imagens.addAll(imagens);
 	}
 
 }
