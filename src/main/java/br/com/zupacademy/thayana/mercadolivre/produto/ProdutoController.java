@@ -1,5 +1,6 @@
 package br.com.zupacademy.thayana.mercadolivre.produto;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +32,9 @@ public class ProdutoController {
 
 	@Autowired
 	private Uploader uploaderFake;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
 	@InitBinder(value = "novoProdutoRequest")
 	public void init(WebDataBinder webDataBinder) {
@@ -44,6 +49,12 @@ public class ProdutoController {
 		manager.persist(produto);
 		return ResponseEntity.ok(new NovoProdutoResponse(produto));
 	}
+	
+	@GetMapping
+	public List<NovoProdutoResponse> lista() {
+		List<Produto> produtos = produtoRepository.findAll();
+		return NovoProdutoResponse.converter(produtos);
+	}
 
 	@PostMapping(value = "/{id}/imagens")
 	@Transactional
@@ -56,5 +67,6 @@ public class ProdutoController {
 
 		return ResponseEntity.ok(produto);
 	}
+	
 
 }

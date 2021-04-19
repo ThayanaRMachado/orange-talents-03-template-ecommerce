@@ -1,6 +1,8 @@
 package br.com.zupacademy.thayana.mercadolivre.usuario;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NovoUsuarioResponse {
 
@@ -11,7 +13,6 @@ public class NovoUsuarioResponse {
 	private String login;
 
 	public NovoUsuarioResponse(Usuario usuario) {
-		super();
 		this.id = usuario.getId();
 		this.instanteCadastro = usuario.getInstanteCadastro();
 		this.login = usuario.getLogin();
@@ -27,6 +28,16 @@ public class NovoUsuarioResponse {
 
 	public String getLogin() {
 		return login;
+	}
+
+	public static List<NovoUsuarioResponse> converter(List<Usuario> usuarios) {
+		List<NovoUsuarioResponse> responses = new ArrayList<>();
+
+		for (Usuario usuario : usuarios) {
+			NovoUsuarioResponse response = new NovoUsuarioResponse(usuario);
+			responses.add(response);
+		}
+		return responses;
 	}
 
 }

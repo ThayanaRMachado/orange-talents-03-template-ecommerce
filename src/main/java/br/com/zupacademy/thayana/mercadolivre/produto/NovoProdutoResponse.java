@@ -2,7 +2,9 @@ package br.com.zupacademy.thayana.mercadolivre.produto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -86,5 +88,15 @@ public class NovoProdutoResponse {
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
-	 
+
+	public static List<NovoProdutoResponse> converter(List<Produto> produtos) {
+		List<NovoProdutoResponse> responses = new ArrayList<>();
+		
+		for (Produto produto : produtos) {
+			NovoProdutoResponse response = new NovoProdutoResponse(produto);
+			responses.add(response);
+		}
+		return responses;
+	}
+
 }
