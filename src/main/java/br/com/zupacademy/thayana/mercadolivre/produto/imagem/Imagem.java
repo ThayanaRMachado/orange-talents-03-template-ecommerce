@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.URL;
 
-import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
+import br.com.zupacademy.thayana.mercadolivre.produto.pergunta.Produto;
 
 @Entity
 public class Imagem {
