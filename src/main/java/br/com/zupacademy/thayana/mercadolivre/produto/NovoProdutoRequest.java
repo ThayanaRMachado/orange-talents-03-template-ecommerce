@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 import br.com.zupacademy.thayana.mercadolivre.categoria.Categoria;
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.CampoUnico;
 import br.com.zupacademy.thayana.mercadolivre.compartilhado.ExistsId;
+import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.NovaCaracteristicaRequest;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 public class NovoProdutoRequest {

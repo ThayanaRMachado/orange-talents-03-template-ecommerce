@@ -1,4 +1,6 @@
-package br.com.zupacademy.thayana.mercadolivre.produto;
+package br.com.zupacademy.thayana.mercadolivre.produto.caracteristica;
+
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 
 public class NovaCaracteristicaRequest {
 

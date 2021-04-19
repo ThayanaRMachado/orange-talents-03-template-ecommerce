@@ -1,71 +1,57 @@
-package br.com.zupacademy.thayana.mercadolivre.produto;
+package br.com.zupacademy.thayana.mercadolivre.produto.caracteristica;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.URL;
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 
 @Entity
-public class Imagem {
+public class Caracteristica {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String nome;
+
+	private String descricao;
+
 	@ManyToOne
-	@NotNull
-	@Valid
 	private Produto produto;
 
-	@URL
-	@NotBlank
-	private String link;
-
 	@Deprecated
-	public Imagem() {
+	public Caracteristica() {
 
 	}
 
-	public Imagem(@NotNull @Valid Produto produto, @URL @NotBlank String link) {
+	public Caracteristica(@NotBlank String nome, @NotBlank String descricao, @NotNull Produto produto) {
+		this.nome = nome;
+		this.descricao = descricao;
 		this.produto = produto;
-		this.link = link;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public String getNome() {
+		return nome;
 	}
 
-	public String getLink() {
-		return link;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
+	public String getDescricao() {
+		return descricao;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
 	}
@@ -78,11 +64,11 @@ public class Imagem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Imagem other = (Imagem) obj;
-		if (link == null) {
-			if (other.link != null)
+		Caracteristica other = (Caracteristica) obj;
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!link.equals(other.link))
+		} else if (!nome.equals(other.nome))
 			return false;
 		if (produto == null) {
 			if (other.produto != null)
@@ -91,5 +77,4 @@ public class Imagem {
 			return false;
 		return true;
 	}
-
 }

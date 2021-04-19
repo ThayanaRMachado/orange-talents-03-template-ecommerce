@@ -23,6 +23,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import br.com.zupacademy.thayana.mercadolivre.categoria.Categoria;
+import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.Caracteristica;
+import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.NovaCaracteristicaRequest;
+import br.com.zupacademy.thayana.mercadolivre.produto.imagem.Imagem;
+import br.com.zupacademy.thayana.mercadolivre.produto.opiniao.Opiniao;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 @Entity
@@ -62,6 +66,9 @@ public class Produto {
 	@NotNull
 	@Valid
 	private Usuario dono;
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<Opiniao> opinioes = new HashSet<>();
 	
 	@CreationTimestamp
 	private LocalDateTime dataCadastro = LocalDateTime.now();
@@ -113,6 +120,10 @@ public class Produto {
 	
 	public Usuario getDono() {
 		return dono;
+	}
+	
+	public Set<Opiniao> getOpinioes() {
+		return opinioes;
 	}
 
 	public LocalDateTime getDataCadastro() {

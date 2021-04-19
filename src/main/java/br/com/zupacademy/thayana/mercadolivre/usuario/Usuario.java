@@ -97,7 +97,7 @@ public class Usuario implements UserDetails {
 	public String getUsername() {
 		return this.login;
 	}
-
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

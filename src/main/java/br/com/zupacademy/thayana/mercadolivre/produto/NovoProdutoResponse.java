@@ -7,6 +7,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.Caracteristica;
+
 public class NovoProdutoResponse {
 
 	private Long id;
@@ -18,6 +20,7 @@ public class NovoProdutoResponse {
 	private Long idCategoria;
 	private String nomeCategoria;
 	private String loginUsuario;
+	private String nomeProduto;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataCadastro = LocalDateTime.now();
@@ -36,6 +39,7 @@ public class NovoProdutoResponse {
 		this.idCategoria = produto.getCategoria().getId();
 		this.nomeCategoria = produto.getCategoria().getNome();
 		this.loginUsuario = produto.getDono().getLogin();
+		this.nomeProduto = produto.getNome();
 		this.dataCadastro = produto.getDataCadastro();
 	}
 
@@ -77,6 +81,10 @@ public class NovoProdutoResponse {
 	
 	public String getLoginUsuario() {
 		return loginUsuario;
+	}
+	
+	public String getNomeProduto() {
+		return nomeProduto;
 	}
 	 
 }
