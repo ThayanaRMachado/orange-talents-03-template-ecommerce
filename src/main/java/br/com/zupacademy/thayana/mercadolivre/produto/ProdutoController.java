@@ -1,4 +1,4 @@
-package br.com.zupacademy.thayana.mercadolivre.produto.pergunta;
+package br.com.zupacademy.thayana.mercadolivre.produto;
 
 import java.util.List;
 import java.util.Set;
@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.ProibeCaracteristicaComNomeIgualValidator;
 import br.com.zupacademy.thayana.mercadolivre.produto.imagem.NovaImagemRequest;
+import br.com.zupacademy.thayana.mercadolivre.produto.imagem.Uploader;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 @RestController

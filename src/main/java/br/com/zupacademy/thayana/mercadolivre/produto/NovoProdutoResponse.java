@@ -1,4 +1,4 @@
-package br.com.zupacademy.thayana.mercadolivre.produto.pergunta;
+package br.com.zupacademy.thayana.mercadolivre.produto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

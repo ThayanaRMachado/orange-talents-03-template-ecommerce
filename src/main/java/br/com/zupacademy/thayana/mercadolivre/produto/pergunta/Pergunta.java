@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 @Entity

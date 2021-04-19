@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.zupacademy.thayana.mercadolivre.produto.pergunta.Produto;
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 
 @Entity
 public class Caracteristica {

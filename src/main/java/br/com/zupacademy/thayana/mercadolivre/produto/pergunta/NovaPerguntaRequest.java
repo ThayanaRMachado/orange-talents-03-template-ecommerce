@@ -2,6 +2,7 @@ package br.com.zupacademy.thayana.mercadolivre.produto.pergunta;
 
 import javax.validation.constraints.NotBlank;
 
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 public class NovaPerguntaRequest {

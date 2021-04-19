@@ -5,7 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import br.com.zupacademy.thayana.mercadolivre.produto.pergunta.Produto;
+import br.com.zupacademy.thayana.mercadolivre.produto.Produto;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 public class NovaOpiniaoRequest {

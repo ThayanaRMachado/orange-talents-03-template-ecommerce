@@ -1,4 +1,4 @@
-package br.com.zupacademy.thayana.mercadolivre.produto.pergunta;
+package br.com.zupacademy.thayana.mercadolivre.produto.imagem;
 
 import java.util.List;
 import java.util.Set;

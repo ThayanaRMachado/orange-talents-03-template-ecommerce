@@ -1,9 +1,11 @@
-package br.com.zupacademy.thayana.mercadolivre.produto.pergunta;
+package br.com.zupacademy.thayana.mercadolivre.produto.caracteristica;
 
 import java.util.Set;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import br.com.zupacademy.thayana.mercadolivre.produto.NovoProdutoRequest;
 
 public class ProibeCaracteristicaComNomeIgualValidator implements Validator {
 
