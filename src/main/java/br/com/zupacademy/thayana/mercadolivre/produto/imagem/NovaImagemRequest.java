@@ -15,7 +15,7 @@ public class NovaImagemRequest {
 	private List<MultipartFile> imagens = new ArrayList<>();
 
 	public NovaImagemRequest() {
-		super();
+
 	}
 
 	public void setImagens(List<MultipartFile> imagens) {

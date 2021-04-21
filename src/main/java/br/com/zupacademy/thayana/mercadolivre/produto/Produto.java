@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -27,6 +28,7 @@ import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.Caracterist
 import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.NovaCaracteristicaRequest;
 import br.com.zupacademy.thayana.mercadolivre.produto.imagem.Imagem;
 import br.com.zupacademy.thayana.mercadolivre.produto.opiniao.Opiniao;
+import br.com.zupacademy.thayana.mercadolivre.produto.pergunta.Pergunta;
 import br.com.zupacademy.thayana.mercadolivre.usuario.Usuario;
 
 @Entity
@@ -58,7 +60,7 @@ public class Produto {
 	@NotNull
 	@ManyToOne
 	private Categoria categoria;
-	
+
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<Imagem> imagens = new HashSet<>();
 
@@ -66,10 +68,13 @@ public class Produto {
 	@NotNull
 	@Valid
 	private Usuario dono;
-	
+
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<Opiniao> opinioes = new HashSet<>();
-	
+
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<Pergunta> perguntas = new HashSet<>();
+
 	@CreationTimestamp
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 
@@ -77,8 +82,7 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(String nome, BigDecimal preco, int quantidade,
-			Collection<NovaCaracteristicaRequest> caracteristicas,
+	public Produto(String nome, BigDecimal preco, int quantidade, Collection<NovaCaracteristicaRequest> caracteristicas,
 			String descricao, Categoria categoria, Usuario dono) {
 		this.nome = nome;
 		this.preco = preco;
@@ -117,11 +121,15 @@ public class Produto {
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
+
+	public Set<Imagem> getImagens() {
+		return imagens;
+	}
+
 	public Usuario getDono() {
 		return dono;
 	}
-	
+
 	public Set<Opiniao> getOpinioes() {
 		return opinioes;
 	}
@@ -159,6 +167,32 @@ public class Produto {
 		Set<Imagem> imagens = links.stream().map(link -> new Imagem(this, link)).collect(Collectors.toSet());
 
 		this.imagens.addAll(imagens);
+	}
+
+	public <T> Set<T> mapperImagem(Function<Imagem, T> mapper) {
+		return this.imagens.stream().map(mapper).collect(Collectors.toSet());
+	}
+
+	public <T> Set<T> mapperCaracteristica(Function<Caracteristica, T> mapper) {
+		return this.caracteristicas.stream().map(mapper).collect(Collectors.toSet());
+	}
+
+	public <T> Set<T> mapperOpiniao(Function<Opiniao, T> mapper) {
+		return this.opinioes.stream().map(mapper).collect(Collectors.toSet());
+	}
+
+	public <T> Set<T> mapperPergunta(Function<Pergunta, T> mapper) {
+		return this.perguntas.stream().map(mapper).collect(Collectors.toSet());
+	}
+
+	public Double calculaMediaNotas() {
+		return this.getOpinioes().stream().map(opiniao -> opiniao.getNota()).mapToInt(nota -> nota).average()
+				.orElse(0.0);
+	}
+
+	public int calculaTotalNotas() {
+		int totalNotas = opinioes.size();
+		return totalNotas;
 	}
 
 }
