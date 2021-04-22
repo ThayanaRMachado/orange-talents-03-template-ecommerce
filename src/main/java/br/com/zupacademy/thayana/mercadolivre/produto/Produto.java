@@ -22,6 +22,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.util.Assert;
 
 import br.com.zupacademy.thayana.mercadolivre.categoria.Categoria;
 import br.com.zupacademy.thayana.mercadolivre.produto.caracteristica.Caracteristica;
@@ -193,6 +194,16 @@ public class Produto {
 	public int calculaTotalNotas() {
 		int totalNotas = opinioes.size();
 		return totalNotas;
+	}
+
+	public boolean abataEstoque(int quantidade) {
+		Assert.isTrue(quantidade > 0, "A quantidade deve ser maior do que 0 para abater o estoque " + quantidade);
+		
+		if (quantidade <= this.quantidade) {
+			this.quantidade -= quantidade;
+			return true;
+		}
+		return false;
 	}
 
 }
