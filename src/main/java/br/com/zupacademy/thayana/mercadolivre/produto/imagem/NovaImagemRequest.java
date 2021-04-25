@@ -18,10 +18,6 @@ public class NovaImagemRequest {
 
 	}
 
-	public void setImagens(List<MultipartFile> imagens) {
-		this.imagens = imagens;
-	}
-
 	public List<MultipartFile> getImagens() {
 		return imagens;
 	}

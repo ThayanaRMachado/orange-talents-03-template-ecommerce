@@ -26,7 +26,6 @@ public class Transacao {
 	@ManyToOne
 	private Compra compra;
 
-	@NotNull
 	private LocalDateTime instante;
 
 	@Deprecated

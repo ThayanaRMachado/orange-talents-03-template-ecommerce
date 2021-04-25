@@ -48,8 +48,7 @@ public class NovoProdutoRequest {
 
 	public NovoProdutoRequest(@NotBlank String nome, @NotNull @Positive BigDecimal preco,
 			@NotNull @Positive int quantidade, @NotBlank @Size(max = 1000) String descricao,
-			@Size(min = 3) @Valid Set<NovaCaracteristicaRequest> caracteristicas,
-			@NotNull Long idCategoria) {
+			@Size(min = 3) @Valid Set<NovaCaracteristicaRequest> caracteristicas, @NotNull Long idCategoria) {
 		this.nome = nome;
 		this.preco = preco;
 		this.quantidade = quantidade;

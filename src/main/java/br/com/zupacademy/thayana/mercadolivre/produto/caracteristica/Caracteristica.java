@@ -77,4 +77,5 @@ public class Caracteristica {
 			return false;
 		return true;
 	}
+	
 }

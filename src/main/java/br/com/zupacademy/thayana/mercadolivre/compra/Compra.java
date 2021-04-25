@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -50,7 +49,7 @@ public class Compra {
 
 	@Deprecated
 	public Compra() {
-
+		
 	}
 
 	public Compra(Produto produtoSelecionado, @Positive int quantidade, Usuario cliente,
@@ -93,13 +92,14 @@ public class Compra {
 		return this.gatewayPagamento.criaUrlRetorno(this, uriComponentsBuilder);
 	}
 
-	public void adicionaTransacao(@Valid RetornoGatewayPagamento request) {
+	public StatusTransacao adicionaTransacao(RetornoGatewayPagamento request) {
 		Transacao novaTransacao = request.toTransacao(this);
 
 		Assert.state(!this.transacoes.contains(novaTransacao), "Já existe uma transacão igual a essa!");
 		Assert.state(transacoesConcluidasComSucesso().isEmpty(), "Compra concluída com sucesso!");
 
 		this.transacoes.add(novaTransacao);
+		return novaTransacao.getStatus();
 	}
 
 	private Set<Transacao> transacoesConcluidasComSucesso() {
@@ -112,4 +112,5 @@ public class Compra {
 	public boolean processadaComSucesso() {
 		return !transacoesConcluidasComSucesso().isEmpty();
 	}
+	
 }
